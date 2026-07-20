@@ -1,0 +1,43 @@
+scenario,intervention,coverage
+BAU,CM,0.55
+BAU,IPTp,0.45
+BAU,Dual AI,0.4
+BAU,Pyr,0.4
+BAU,PMC,0.35
+BAU,Vac,0.25
+BAU,LSM,0.1
+Scenario 1,CM,0.65
+Scenario 1,IPTp,0.55
+Scenario 1,Dual AI,0.5
+Scenario 1,Pyr,0.5
+Scenario 1,PMC,0.45
+Scenario 1,Vac,0.35
+Scenario 1,LSM,0.25
+Scenario 2,CM,0.75
+Scenario 2,IPTp,0.65
+Scenario 2,Dual AI,0.6
+Scenario 2,Pyr,0.6
+Scenario 2,PMC,0.6
+Scenario 2,Vac,0.5
+Scenario 2,LSM,0.4
+Target,CM,0.85
+Target,IPTp,0.75
+Target,Dual AI,0.75
+Target,Pyr,0.75
+Target,PMC,0.75
+Target,Vac,0.65
+Target,LSM,0.55
+High,CM,0.9
+High,IPTp,0.85
+High,Dual AI,0.85
+High,Pyr,0.85
+High,PMC,0.85
+High,Vac,0.75
+High,LSM,0.7
+Maximum,CM,0.95
+Maximum,IPTp,0.9
+Maximum,Dual AI,0.9
+Maximum,Pyr,0.9
+Maximum,PMC,0.9
+Maximum,Vac,0.85
+Maximum,LSM,0.8

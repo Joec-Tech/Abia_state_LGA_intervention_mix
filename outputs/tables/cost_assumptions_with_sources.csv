@@ -1,0 +1,8 @@
+intervention,base_usd_2024,low_usd_2024,high_usd_2024,unit,source,url
+CM,14.168642343035224,3.765288811633376,46.00625107251299,additional malaria case diagnosed and treated,White et al. 2011 systematic review,https://pmc.ncbi.nlm.nih.gov/articles/PMC3229472/
+IPTp,2.8727759081350945,0.6554391635065507,4.68569274336598,pregnant woman protected per year,White et al. 2011 systematic review,https://pmc.ncbi.nlm.nih.gov/articles/PMC3229472/
+PMC,0.8367308470296392,0.6693846776237113,1.5061155246533506,eligible child protected per year,White et al. 2011 systematic review (IPTi/PMC proxy),https://pmc.ncbi.nlm.nih.gov/articles/PMC3229472/
+Pyr,3.068013105775344,1.18,5.7,person protected per year,White et al. 2011; Conteh et al. 2021 reviews,https://pmc.ncbi.nlm.nih.gov/articles/PMC8324482/
+Dual AI,3.2700195892710227,1.5,6.5,person protected per year,Mosha et al. dual-AI LLIN economic evaluation; Nigeria PBO-net incremental-cost proxy for the unit-cost premium,https://pmc.ncbi.nlm.nih.gov/articles/PMC8971961/
+Vac,26.2,24.799999999999997,27.64,"fully vaccinated child, four-dose R21 course",R21 price proxy plus Baral et al. delivery-cost range,https://pmc.ncbi.nlm.nih.gov/articles/PMC9946791/
+LSM,2.091827117574098,1.1016956152556918,32.07019557767624,target-area resident protected per year,Worrall & Fillinger 2011; Phiri et al. 2021 high-cost sensitivity,https://link.springer.com/article/10.1186/1475-2875-10-338

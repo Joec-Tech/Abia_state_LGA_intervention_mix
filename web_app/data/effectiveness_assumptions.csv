@@ -1,0 +1,8 @@
+intervention,low,base,high,note,source,url
+CM,0.05,0.1,0.2,Incidence proxy for more effective testing and treatment.,Camponovo et al. 2024 modelling study,https://pmc.ncbi.nlm.nih.gov/articles/PMC11549775/
+IPTp,0.15,0.25,0.35,Planning proxy; effectiveness is SP-resistance and outcome dependent.,Kayentao et al. systematic review and later IPTp evidence,https://pmc.ncbi.nlm.nih.gov/articles/PMC4669677/
+Dual AI,0.2,0.3,0.4,Proxy informed by next-generation/PBO net trials.,Mosha et al. dual-AI LLIN trial; Nigeria PBO-net economic evaluation used only as a cost-premium proxy,https://pmc.ncbi.nlm.nih.gov/articles/PMC8971961/
+Pyr,0.1,0.2,0.3,Conservative pyrethroid-net planning effect.,Spectrum-Malaria evidence synthesis / ITN trials,https://pmc.ncbi.nlm.nih.gov/articles/PMC5301449/
+PMC,0.22,0.3,0.35,Pooled trial evidence for reduction in clinical malaria.,PMC evidence synthesis reporting about 30% case reduction,https://pmc.ncbi.nlm.nih.gov/articles/PMC10875741/
+Vac,0.36,0.5,0.66,R21 four-dose programme; time-averaged planning effect.,WHO R21 recommendation and efficacy summary,https://www.who.int/news/item/02-10-2023-who-recommends-r21-matrix-m-vaccine-for-malaria-prevention-in-updated-advice-on-immunization
+LSM,0.2,0.4,0.6,Highly setting-dependent; requires findable and treatable habitats.,Cochrane LSM review; contextual planning range,https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008923.pub3/

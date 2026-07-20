@@ -1,0 +1,10 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+  "python.analysis.extraPaths": ["${workspaceFolder}"],
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true
+  },
+  "liveServer.settings.port": 5501
+}

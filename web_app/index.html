@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abia Malaria Intervention Scenario Explorer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">ABIA STATE MALARIA DECISION SUPPORT</p>
+      <h1>Intervention Coverage Scenario Explorer</h1>
+      <p class="header-copy">Select an LGA, adjust the coverage of its recommended interventions, and compare projected cases, cases averted and indicative cost-effectiveness over May 2026–April 2028.</p>
+    </div>
+    <button id="printButton" class="secondary-button" type="button">Print report</button>
+  </header>
+
+  <main class="page-shell">
+    <section class="control-panel card">
+      <div class="control-grid">
+        <label class="field">
+          <span>Select LGA</span>
+          <select id="lgaSelect" aria-label="Select LGA"></select>
+        </label>
+        <label class="field">
+          <span>Effectiveness assumption</span>
+          <select id="effectLevel">
+            <option value="low">Low</option>
+            <option value="base" selected>Base</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Cost assumption</span>
+          <select id="costLevel">
+            <option value="low">Low</option>
+            <option value="base" selected>Base</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>USD to NGN planning rate</span>
+          <input id="exchangeRate" type="number" min="1" step="1" value="1500" />
+        </label>
+      </div>
+      <div class="toggle-row">
+        <label class="toggle-label">
+          <input id="gradualScaleUp" type="checkbox" checked />
+          <span>Scale coverage up gradually over the first 12 months</span>
+        </label>
+      </div>
+      <div class="model-note">
+        <strong>Coverage interpretation:</strong> verified current intervention coverage is unavailable. Therefore, 0% means no additional scale-up above the SARIMA business-as-usual forecast. Slider values represent modelled <em>additional effective coverage intensity</em>, not measured total coverage.
+      </div>
+    </section>
+
+    <section class="lga-banner card">
+      <div>
+        <p class="eyebrow">SELECTED LGA</p>
+        <h2 id="lgaName"></h2>
+        <div class="badge-row">
+          <span id="prevalenceBadge" class="stat-badge"></span>
+          <span id="burdenBadge" class="stat-badge"></span>
+          <span id="populationBadge" class="stat-badge"></span>
+        </div>
+      </div>
+      <div class="recommended-block">
+        <span class="recommended-label">Recommended intervention mix</span>
+        <div id="mixBadges" class="mix-badges"></div>
+      </div>
+    </section>
+
+    <section class="workspace-grid">
+      <aside class="slider-panel card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">SCENARIO INPUTS</p>
+            <h3>Intervention coverage</h3>
+          </div>
+          <button id="resetButton" class="text-button" type="button">Reset to 0%</button>
+        </div>
+        <div class="preset-row" aria-label="Coverage presets">
+          <button class="preset-button" data-value="25" type="button">All 25%</button>
+          <button class="preset-button" data-value="50" type="button">All 50%</button>
+          <button class="preset-button" data-value="75" type="button">All 75%</button>
+          <button class="preset-button" data-value="100" type="button">All 100%</button>
+        </div>
+        <div id="slidersContainer"></div>
+      </aside>
+
+      <section class="results-panel">
+        <div class="metric-grid">
+          <article class="metric-card card">
+            <span>24-month BAU forecast</span>
+            <strong id="bauCases">—</strong>
+            <small>Forecast cases without additional scale-up</small>
+          </article>
+          <article class="metric-card card">
+            <span>Projected scenario cases</span>
+            <strong id="scenarioCases">—</strong>
+            <small>After the selected intervention coverage</small>
+          </article>
+          <article class="metric-card card highlight">
+            <span>Potential cases averted</span>
+            <strong id="casesAverted">—</strong>
+            <small id="percentAverted">—</small>
+          </article>
+          <article class="metric-card card">
+            <span>Estimated programme cost</span>
+            <strong id="programmeCost">—</strong>
+            <small>Indicative 2024 cost evidence converted to NGN</small>
+          </article>
+          <article class="metric-card card">
+            <span>Net cost per case averted</span>
+            <strong id="costPerCase">—</strong>
+            <small>Programme cost less estimated treatment savings</small>
+          </article>
+          <article class="metric-card card">
+            <span>Forecast uncertainty</span>
+            <strong id="forecastRange">—</strong>
+            <small>95% SARIMA interval for BAU cases</small>
+          </article>
+        </div>
+
+        <div class="chart-card card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">MONTHLY PROJECTION</p>
+              <h3>BAU forecast versus selected coverage scenario</h3>
+            </div>
+            <div class="legend">
+              <span><i class="legend-line bau"></i> BAU forecast</span>
+              <span><i class="legend-line scenario"></i> Scenario cases</span>
+            </div>
+          </div>
+          <canvas id="forecastChart" width="1000" height="390" aria-label="Monthly forecast chart"></canvas>
+        </div>
+
+        <div class="two-column">
+          <div class="chart-card card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">IMPACT BY GROUP</p>
+                <h3>Potential cases averted</h3>
+              </div>
+            </div>
+            <canvas id="groupChart" width="520" height="320" aria-label="Cases averted by group"></canvas>
+          </div>
+          <div class="card action-card">
+            <p class="eyebrow">DECISION SUMMARY</p>
+            <h3 id="decisionTitle">Set coverage to begin</h3>
+            <p id="decisionText">Move the intervention sliders to generate an LGA-specific scenario.</p>
+            <div class="action-buttons">
+              <button id="downloadButton" class="primary-button" type="button">Download scenario CSV</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="card evidence-card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">EVIDENCE AND ASSUMPTIONS</p>
+          <h3>Sources used for the selected LGA</h3>
+        </div>
+      </div>
+      <div id="evidenceList" class="evidence-list"></div>
+      <p class="source-note" id="populationSource"></p>
+    </section>
+
+    <section class="card limitations-card">
+      <h3>Interpretation warning</h3>
+      <p>The SARIMA forecast describes reported malaria cases under continuation of historical patterns. Because verified baseline intervention coverage is unavailable, this explorer estimates prevention potential from additional effective coverage rather than causal impact from measured current coverage. The results support scenario planning and stakeholder discussion; they should not be used alone for final procurement or budget allocation.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Historical data: January 2021–April 2026. Forecast horizon: May 2026–April 2028.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

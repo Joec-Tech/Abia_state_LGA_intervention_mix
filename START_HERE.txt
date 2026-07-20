@@ -1,0 +1,10 @@
+OPEN README_FIRST.md FIRST.
+
+Quick Windows order:
+1. 01_setup_environment.bat
+2. 02_run_model_and_update_app.bat
+3. 03_run_web_app.bat
+
+Jupyter notebooks are in the notebooks folder.
+Python source modules are in the src folder.
+The HTML/CSS/JavaScript app is in the web_app folder.
